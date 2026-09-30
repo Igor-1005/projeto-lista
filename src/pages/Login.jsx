@@ -6,7 +6,6 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 export default function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  // isLogin controla se estamos na tela de Entrar ou Cadastrar
   const [isLogin, setIsLogin] = useState(true);
   const [erro, setErro] = useState('');
   const navigate = useNavigate();
@@ -17,13 +16,10 @@ export default function Login() {
     
     try {
       if (isLogin) {
-        // Tenta fazer o login
         await signInWithEmailAndPassword(auth, email, senha);
       } else {
-        // Tenta criar uma nova conta
         await createUserWithEmailAndPassword(auth, email, senha);
       }
-      // Se der tudo certo, redireciona para a tela principal
       navigate('/dashboard');
     } catch (error) {
       console.error(error);
